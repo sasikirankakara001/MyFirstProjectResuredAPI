@@ -29,6 +29,14 @@ public class Demo {
 				+ "\"address\":\"70 winter walkss, USA12345\",\r\n"
 				+ "\"key\":\"qaclick123\"\r\n"
 				+ "}").when().put("/maps/api/place/update/json").then().log().all().extract().response().asString();
+		
+		given().log().all().header("Content-Type","application/json")
+		.body("{\r\n"
+				+ "\r\n"
+				+ "    \"place_id\":\""+place_id+"\"\r\n"
+				+ "}\r\n"
+				+ "").when().delete("maps/api/place/delete/json").then()
+		.log().all().extract().response().asString();
 
 	}
 
